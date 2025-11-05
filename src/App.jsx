@@ -6,7 +6,7 @@ import DonationWidget from './components/DonationWidget';
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#0b0d13] text-white">
+    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
       <Navbar />
       <Hero />
 
@@ -20,10 +20,10 @@ function App() {
         </section>
       </main>
 
-      <footer className="border-t border-white/10 mt-8">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 py-10 text-sm text-white/60">
+      <footer className="border-t-2 border-white mt-8">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 py-10 text-sm text-white/70">
           <p>
-            © {new Date().getFullYear()} Kintai. Empowering creators and their communities through yield-powered donations.
+            © {new Date().getFullYear()} Kintai — yield-powered donations for creators and their communities.
           </p>
         </div>
       </footer>

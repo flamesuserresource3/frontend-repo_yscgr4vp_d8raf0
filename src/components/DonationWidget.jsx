@@ -25,23 +25,23 @@ const DonationWidget = () => {
   }, [amount, reserveSplit, apy, share]);
 
   return (
-    <section id="donate" className="">
+    <section id="donate">
       <div className="mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Try the Kintai donation flow</h2>
-        <p className="text-white/70 mt-2 max-w-2xl">
+        <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Try the Kintai donation flow</h2>
+        <p className="text-white/80 mt-2 max-w-2xl">
           Explore how a contribution is split and how the Strategy Reserve works. Adjust the sliders to see the impact.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <div className="border-2 border-white bg-black p-6 shadow-[6px_6px_0_0_#fff]">
           <div className="flex items-center gap-3 mb-5">
-            <div className="bg-white/5 border border-white/10 rounded-xl p-2">
-              <Gift className="w-5 h-5 text-fuchsia-300" />
+            <div className="border-2 border-white p-2 bg-black">
+              <Gift className="w-5 h-5" />
             </div>
             <div>
-              <p className="font-semibold">Donation setup</p>
-              <p className="text-sm text-white/60">This is a local demo — no wallet needed.</p>
+              <p className="font-bold uppercase">Donation setup</p>
+              <p className="text-sm text-white/70">Local demo — no wallet needed.</p>
             </div>
           </div>
 
@@ -54,14 +54,14 @@ const DonationWidget = () => {
               step={5}
               value={amount}
               onChange={(e) => setAmount(Number(e.target.value))}
-              className="w-full accent-cyan-400"
+              className="w-full accent-white"
             />
             <span className="w-28 text-right tabular-nums">{format(amount)}</span>
           </div>
 
           <div className="grid grid-cols-2 gap-4 mt-4">
-            <Metric label="Immediate support" value={format(calc.toSupport)} hint={`${(100 - reserveSplit).toFixed(0)}%`} color="from-cyan-400/20" />
-            <Metric label="Strategy reserve" value={format(calc.toReserve)} hint={`${reserveSplit.toFixed(0)}%`} color="from-fuchsia-400/20" />
+            <Metric label="Immediate support" value={format(calc.toSupport)} hint={`${(100 - reserveSplit).toFixed(0)}%`} />
+            <Metric label="Strategy reserve" value={format(calc.toReserve)} hint={`${reserveSplit.toFixed(0)}%`} />
           </div>
 
           <div className="mt-6">
@@ -79,14 +79,14 @@ const DonationWidget = () => {
             <Slider value={share} onChange={setShare} min={0} max={100} suffix="%" />
           </div>
 
-          <button className="mt-6 w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-fuchsia-500 hover:from-cyan-400 hover:to-fuchsia-400 transition font-medium">
+          <button className="mt-6 w-full inline-flex items-center justify-center gap-2 px-5 py-3 border-2 border-white bg-black shadow-[4px_4px_0_0_#fff] hover:shadow-[2px_2px_0_0_#fff] transition font-bold uppercase tracking-wider">
             <Coins className="w-4 h-4" />
             Simulate donation
           </button>
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-          <p className="font-semibold mb-3">Projected yearly impact</p>
+        <div className="border-2 border-white bg-black p-6 shadow-[6px_6px_0_0_#fff]">
+          <p className="font-bold uppercase mb-3">Projected yearly impact</p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Stat title="Total yield" value={format(calc.yearlyYield)} />
@@ -95,19 +95,19 @@ const DonationWidget = () => {
           </div>
 
           <div className="mt-8">
-            <div className="h-2 w-full rounded bg-white/10 overflow-hidden">
+            <div className="h-2 w-full border-2 border-white bg-black overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-cyan-400 to-fuchsia-400"
+                className="h-full bg-white"
                 style={{ width: `${Math.min(100, Math.max(0, (calc.streamerYield / (calc.yearlyYield || 1)) * 100))}%` }}
               />
             </div>
-            <div className="mt-2 flex justify-between text-xs text-white/60">
+            <div className="mt-2 flex justify-between text-xs text-white/70 uppercase">
               <span>Streamer share</span>
               <span>{share.toFixed(0)}%</span>
             </div>
           </div>
 
-          <div className="mt-8 text-sm text-white/60">
+          <div className="mt-8 text-sm text-white/70">
             <p>
               Estimates are for demonstration. When live, returns and allocations may change. Kintai focuses on safety-first strategies and transparent reporting.
             </p>
@@ -119,14 +119,14 @@ const DonationWidget = () => {
 };
 
 const Label = ({ children }) => (
-  <p className="text-sm text-white/70 mb-2">{children}</p>
+  <p className="text-sm text-white/80 mb-2 uppercase tracking-wider">{children}</p>
 );
 
-const Metric = ({ label, value, hint, color }) => (
-  <div className={`rounded-xl border border-white/10 bg-gradient-to-br ${color} to-transparent p-4`}>
-    <p className="text-xs uppercase tracking-wide text-white/60">{label}</p>
-    <p className="text-xl font-semibold">{value}</p>
-    {hint && <p className="text-xs text-white/50 mt-1">{hint}</p>}
+const Metric = ({ label, value, hint }) => (
+  <div className="border-2 border-white bg-black p-4 shadow-[4px_4px_0_0_#fff]">
+    <p className="text-xs uppercase tracking-wide text-white/70">{label}</p>
+    <p className="text-xl font-extrabold">{value}</p>
+    {hint && <p className="text-xs text-white/60 mt-1">{hint}</p>}
   </div>
 );
 
@@ -138,16 +138,16 @@ const Slider = ({ value, onChange, min = 0, max = 100, suffix = '' }) => (
       max={max}
       value={value}
       onChange={(e) => onChange(Number(e.target.value))}
-      className="w-full accent-fuchsia-400"
+      className="w-full accent-white"
     />
     <span className="w-16 text-right tabular-nums">{value.toFixed(0)}{suffix}</span>
   </div>
 );
 
 const Stat = ({ title, value }) => (
-  <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-    <p className="text-sm text-white/60">{title}</p>
-    <p className="text-2xl font-bold">{value}</p>
+  <div className="border-2 border-white bg-black p-4">
+    <p className="text-sm text-white/70">{title}</p>
+    <p className="text-2xl font-extrabold">{value}</p>
   </div>
 );
 
